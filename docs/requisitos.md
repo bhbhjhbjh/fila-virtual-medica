@@ -2,13 +2,13 @@
 
 ## Requisitos Funcionais
 
-01 — Cadastro do paciente
+01 — Cadastro do aluno
 
-O sistema deve permitir que o paciente realize seu cadastro.
+O sistema deve permitir que o aluno realize seu cadastro e solicite atendimento.
 
 02 — Acompanhamento da fila
 
-O sistema deve permitir que o paciente acompanhe sua posição na fila de atendimento.
+O sistema deve permitir que o paciente acompanhe sua posição na fila de atendimento, se há outro aluno na enfermaria.
 
 03 — Quantidade de pessoas na fila
 
@@ -18,17 +18,13 @@ O sistema deve informar quantas pessoas estão à frente do paciente.
 
 O sistema deve apresentar uma estimativa do tempo restante para o atendimento.
 
-05 — Status do atendimento
+05 - Disponibilidade de motorista em caso de emergência
 
-O sistema deve informar o status atual da consulta.
+O sistema deve mostrar se há motoristas disponíveis em caso de emergência para o aluno se dirigir ao pronto socorro.
 
-06 — Notificação
+06 -Disponibilidade de medicamentos
 
-O sistema deve avisar o paciente quando estiver próximo de ser atendido.
-
-07 — Atualização da fila
-
-O sistema deve atualizar as informações da fila conforme os atendimentos forem realizados.
+O aluno poderá acessar os remédios disponíveis.
 
 ## Requisitos Não Funcionais
 
@@ -51,3 +47,6 @@ O aplicativo deve ser compatível com dispositivos móveis.
 05 — Confiabilidade
 
 As informações apresentadas sobre a fila devem ser atualizadas e confiáveis.
+
+06-Dados já cadastrados
+O sistema deve conter informações prévias de cada aluno, contendo informações de condições médicas ou possíveis alergias, por exemplo
