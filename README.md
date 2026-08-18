@@ -1,28 +1,28 @@
-#FilaMed
+#FilaMedSchool
 
 #Introdução
-O FilaMed é uma proposta de aplicativo destinado ao acompanhamento de filas de atendimento médico.
+O FilaMedSchool é uma proposta de aplicativo destinado ao acompanhamento de fila de atendimento e disponibilidade de medicamento na enfermaria da escola.
 
 ## Problema
-Pessoas que trabalham e precisam realizar consultas médicas podem passar várias horas aguardando atendimento. Como muitas vezes não existe uma previsão de quando serão atendidas, o paciente pode acabar perdendo horas de trabalho.
+Muitas vezes alunos passam mal em sala de aula e não tem a informação se há medicamentos ou profissionais disponíveis para avaliação de gravidade.
 
 ## Justificativa
-O projeto busca ajudar os pacientes a organizar melhor seu tempo, permitindo acompanhar a fila e ter uma estimativa do tempo de espera.
+O projeto busca ajudar os alunos a se informarem, permitindo acompanhar a fila de espera, se há profissionais, ter uma estimativa do tempo de espera e saber se há medicamentos necessarios.
 
 ## Objetivo Geral
 
-Desenvolver uma solução que permita aos pacientes acompanhar sua posição na fila de atendimento médico e obter uma estimativa do tempo restante para a consulta.
+Desenvolver uma solução que permita aos alunos acompanhar sua posição na fila de atendimento, obter uma estimativa do tempo restante para a consulta e saber a disponibilidade de medicações e profissionais.
 
 ## Objetivos Específicos
 
 - Permitir que o paciente acompanhe sua posição na fila.
 - Informar quantas pessoas estão à sua frente.
 - Apresentar uma estimativa do tempo de espera.
-- Permitir o acompanhamento do status do atendimento.
-- Enviar notificações quando o paciente estiver próximo de ser atendido.
+- Permitir saber os medicamentos disponíveis.
+- Saber se há motoristas disponíveis em caso de emergência.
 
 ## Solução Proposta
 
-A solução consiste em um aplicativo no qual o paciente poderá acompanhar sua posição na fila, a quantidade de pessoas à sua frente e uma estimativa do tempo de espera.
+A solução consiste em um aplicativo ou site no qual o aluno poderá acompanhar sua posição na fila, a quantidade de pessoas à sua frente, uma estimativa do tempo de espera e a disponibilidade de medicamentos.
 
 
