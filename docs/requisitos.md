@@ -49,4 +49,5 @@ O aplicativo deve ser compatível com dispositivos móveis.
 As informações apresentadas sobre a fila devem ser atualizadas e confiáveis.
 
 06-Dados já cadastrados
+
 O sistema deve conter informações prévias de cada aluno, contendo informações de condições médicas ou possíveis alergias, por exemplo
