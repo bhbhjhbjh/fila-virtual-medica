@@ -7,7 +7,7 @@ O FilaMedSchool é uma proposta de aplicativo destinado ao acompanhamento de fil
 Muitas vezes alunos passam mal em sala de aula e não tem a informação se há medicamentos ou profissionais disponíveis para avaliação de gravidade.
 
 ## Justificativa
-O projeto busca ajudar os alunos a se informarem, permitindo acompanhar a fila de espera, se há profissionais, ter uma estimativa do tempo de espera e saber se há medicamentos necessarios.
+O projeto busca ajudar os alunos a se informarem, permitindo acompanhar a fila de espera, se há profissionais, ter uma estimativa do tempo de espera e saber se há medicamentos necessários.
 
 ## Objetivo Geral
 
