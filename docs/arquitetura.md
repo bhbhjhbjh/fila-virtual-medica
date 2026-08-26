@@ -1,6 +1,6 @@
 # Relatório de Arquitetura e Modelagem
 
-## Projeto FilaFácil
+## Projeto FilaMedSchool
 
 O FilaFácil é uma proposta de aplicativo para facilitar o acompanhamento de filas de atendimento nas enfermarias de escolas.
 
