@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Enfermaria Virtual - Fila Virtual</title>
+
+    <style>
+
+        /* =========================
+           CONFIGURAÇÕES GERAIS
+        ========================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================== */
+
+        header {
+            background: #e91e63;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        /* =========================
+           MENU
+        ========================== */
+
+        nav {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #e91e63;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================== */
+
+        main {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: #e91e63;
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           EXPLICAÇÃO
+        ========================== */
+
+        .explicacao {
+            line-height: 1.7;
+        }
+
+        /* =========================
+           CADASTRO
+        ========================== */
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: #c2185b;
+        }
+
+        /* =========================
+           CARDS DA FILA
+        ========================== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: #fce4ec;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .numero {
+            font-size: 30px;
+            font-weight: bold;
+            color: #e91e63;
+        }
+
+        /* =========================
+           MEDICAMENTOS
+        ========================== */
+
+        .medicamentos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .medicamento {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .disponivel {
+            color: green;
+            font-weight: bold;
+        }
+
+        .indisponivel {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* =========================
+           PROFISSIONAIS
+        ========================== */
+
+        .profissionais {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .profissional {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .online {
+            color: green;
+            font-weight: bold;
+        }
+
+        .ocupado {
+            color: orange;
+            font-weight: bold;
+        }
+
+        /* =========================
+           EMERGÊNCIA
+        ========================== */
+
+        .emergencia {
+            background: #fff0f0;
+            border-left: 6px solid red;
+        }
+
+        .emergencia button {
+            background: red;
+        }
+
+        /* =========================
+           LISTA DA FILA
+        ========================== */
+
+        #listaFila {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        #listaFila li {
+            background: #f1f1f1;
+            padding: 12px;
+            margin-bottom: 7px;
+            border-radius: 6px;
+        }
+
+        /* =========================
+           RODAPÉ
+        ========================== */
+
+        footer {
+            background:#e91e63;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header>
+
+        <h1>🏥 Enfermaria Virtual CTBJ</h1>
+
+        <p>Fila Virtual de Atendimento</p>
+
+    </header>
+
+
+    <!-- =========================
+         MENU
+    ========================== -->
+
+    <nav>
+
+        <a href="#sobre">Sobre</a>
+
+        <a href="#fila">Fila</a>
+
+        <a href="#medicamentos">Medicamentos</a>
+
+        <a href="#profissionais">Profissionais</a>
+
+        <a href="#emergencia">Emergência</a>
+
+    </nav>
+
+
+    <main>
+
+
+        <!-- =========================
+             EXPLICAÇÃO DO SITE
+        ========================== -->
+
+        <section id="sobre">
+
+            <h2>📱 Sobre o aplicativo</h2>
+
+            <div class="explicacao">
+
+                <p>
+                    A Enfermaria Virtual é um sistema criado para facilitar
+                    a vida dos alunos
+                </p>
+
+                <br>
+
+                <p>
+                    Por meio da Fila Virtual CTBJ, o aluno pode realizar
+                    seu cadastro, acompanhar sua posição na fila e
+                    visualizar uma estimativa do tempo de espera.
+                </p>
+
+                <br>
+
+                <p>
+                    O sistema também apresenta informações sobre
+                    profissionais disponíveis, medicamentos disponíveis
+                    e atendimento de emergência.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CADASTRO
+        ========================== -->
+
+        <section>
+
+            <h2>👤 Cadastro do paciente</h2>
+
+            <p>
+                Digite seu nome e a turma para entrar na fila de atendimento.
+            </p>
+
+            <input
+                type="text"
+                id="nome"
+                placeholder="Digite seu nome"
+            >
+
+            <button onclick="cadastrarPaciente()">
+                Entrar na fila
+            </button>
+
+            <p id="mensagem" style="margin-top: 15px;"></p>
+
+        </section>
+
+
+        <!-- =========================
+             FILA
+        ========================== -->
+
+        <section id="fila">
+
+            <h2>📋 Minha situação na fila</h2>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <h3>Minha posição</h3>
+
+                    <p
+                        class="numero"
+                        id="posicao"
+                    >
+                        -
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Alunos à frente</h3>
+
+                    <p
+                        class="numero"
+                        id="pessoasFrente"
+                    >
+                        -
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>Tempo estimado</h3>
+
+                    <p
+                        class="numero"
+                        id="tempo"
+                    >
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+            
+        </section>
+
+<h2>Dirija-se a sala da Sabrina!</h2>
+        <!-- =========================
+             LISTA DA FILA
+        ========================== -->
+
+        <section>
+
+            <h2>👥 Pessoas na fila</h2>
+
+            <ul id="listaFila"></ul>
+
+        </section>
+
+
+        <!-- =========================
+             MEDICAMENTOS
+        ========================== -->
+
+        <section id="medicamentos">
+
+            <h2>💊 Disponibilidade de medicamentos</h2>
+
+            <div class="medicamentos">
+
+
+                <div class="medicamento">
+
+                    <h3>Paracetamol</h3>
+
+                    <p>
+                        Analgésico e antitérmico.
+                    </p>
+
+                    <br>
+
+                    <p class="disponivel">
+                        ✓ Disponível
+                    </p>
+
+                </div>
+
+
+                <div class="medicamento">
+
+                    <h3>Dipirona</h3>
+
+                    <p>
+                        Analgésico e antitérmico.
+                    </p>
+
+                    <br>
+
+                    <p class="disponivel">
+                        ✓ Disponível
+                    </p>
+
+                </div>
+
+
+                <div class="medicamento">
+
+                    <h3>Amoxicilina</h3>
+
+                    <p>
+                        Antibiótico.
+                    </p>
+
+                    <br>
+
+                    <p class="indisponivel">
+                        ✕ Indisponível
+                    </p>
+
+                </div>
+
+
+                <div class="medicamento">
+
+                    <h3>Ibuprofeno</h3>
+
+                    <p>
+                        Medicamento anti-inflamatório.
+                    </p>
+
+                    <br>
+
+                    <p class="disponivel">
+                        ✓ Disponível
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROFISSIONAIS
+        ========================== -->
+
+        <section id="profissionais">
+
+            <h2>👨‍⚕️ Profissionais disponíveis</h2>
+
+            <div class="profissionais">
+
+
+                <div class="profissional">
+
+                    
+                <div class="profissional">
+
+                    <h3>👨‍⚕️ Enfermeiro</h3>
+
+                    <p>
+                        Sabrina
+                    </p>
+
+                    <br>
+
+                    <p class="online">
+                        ● Disponível
+                    </p>
+
+                </div>
+
+
+                
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             EMERGÊNCIA
+        ========================== -->
+
+        <section
+            id="emergencia"
+            class="emergencia"
+        >
+
+            <h2>🚑 Atendimento de emergência</h2>
+
+            <p>
+                A situação é muito grave? Solicite um carro
+            </p>
+
+            <br>
+
+            <button onclick="chamarEmergencia()">
+                Solicitar carro pra ir na UPA
+            </button>
+
+            <p
+                id="mensagemEmergencia"
+                style="margin-top: 15px;"
+            ></p>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer>
+
+        <p>
+            Enfermaria Virtual - Projeto Escolar
+    
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        // Recupera a fila salva no navegador.
+        // Se não existir nenhuma fila, começa vazia.
+
+        let fila =
+            JSON.parse(localStorage.getItem("filaClinica")) || [];
+
+
+        // Mostra a fila assim que o site abre
+
+        atualizarFila();
+
+
+
+        // ==========================================
+        // CADASTRAR PACIENTE
+        // ==========================================
+
+        function cadastrarPaciente() {
+
+            let campoNome =
+                document.getElementById("nome");
+
+            let nome =
+                campoNome.value.trim();
+
+
+            // Verifica se o nome foi digitado
+
+            if (nome === "") {
+
+                document.getElementById("mensagem").textContent =
+                    "⚠️ Digite seu nome para entrar na fila.";
+
+                return;
+            }
+
+
+            // Adiciona a pessoa na fila
+
+            fila.push(nome);
+
+
+            // Salva a fila no navegador
+
+            localStorage.setItem(
+                "filaClinica",
+                JSON.stringify(fila)
+            );
+
+
+            // A posição é o tamanho atual da fila
+
+            let posicao = fila.length;
+
+
+            // Pessoas antes da pessoa cadastrada
+
+            let pessoasFrente = posicao - 1;
+
+
+            // Cada atendimento demora aproximadamente 5 minutos
+
+            let tempoEstimado =
+                pessoasFrente * 5;
+
+
+            // Mostra os dados na tela
+
+            document.getElementById("posicao").textContent =
+                posicao + "ª";
+
+
+            document.getElementById("pessoasFrente").textContent =
+                pessoasFrente;
+
+
+            document.getElementById("tempo").textContent =
+                tempoEstimado + " min";
+
+
+            document.getElementById("mensagem").textContent =
+                "✅ " + nome +
+                " foi cadastrado com sucesso!";
+
+
+            // Atualiza a lista
+
+            atualizarFila();
+
+
+            // Limpa o campo
+
+            campoNome.value = "";
+
+        }
+
+
+
+        // ==========================================
+        // ATUALIZAR LISTA
+        // ==========================================
+
+        function atualizarFila() {
+
+            let lista =
+                document.getElementById("listaFila");
+
+
+            // Limpa a lista
+
+            lista.innerHTML = "";
+
+
+            // Se não tiver ninguém
+
+            if (fila.length === 0) {
+
+                lista.innerHTML =
+                    "<li>Nenhuma pessoa cadastrada.</li>";
+
+                return;
+            }
+
+
+            // Percorre todas as pessoas
+
+            for (
+                let i = 0;
+                i < fila.length;
+                i++
+            ) {
+
+                let item =
+                    document.createElement("li");
+
+
+                item.textContent =
+                    (i + 1) +
+                    "º - " +
+                    fila[i];
+
+
+                lista.appendChild(item);
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // EMERGÊNCIA
+        // ==========================================
+
+        function chamarEmergencia() {
+
+            document.getElementById(
+                "mensagemEmergencia"
+            ).textContent =
+                "🚑 Solicitação de emergência registrada. Procure atendimento imediato em uma situação real de emergência.";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
